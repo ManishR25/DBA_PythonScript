@@ -58,13 +58,14 @@ def main():
     server = 'KCSLAP5263\SQLEXPRESS2019'
     database = 'Test'
     source_table = 'Original'
-    archive_table = 'bkpOriginal'
+    archive_table = 'Original_Archive'
 
-    # Prompt the user for the desired year
-    year_to_archive = int(input("Enter the year to archive data (e.g., 2019): "))
+    # Prompt the user for the desired range of years
+    start_year = int(input("Enter the start year to archive data (e.g., 2015): "))
+    end_year = int(input("Enter the end year to archive data (e.g., 2019): "))
 
     # Define the condition to identify data to be archived based on the user input
-    archive_condition = f"YEAR(date_time) = {year_to_archive}"  # Assuming 'date_time' is the actual date column in your table
+    archive_condition = f"YEAR(date_time) BETWEEN {start_year} AND {end_year}"  # Assuming 'date_time' is the actual date column in your table
 
     # Create a connection string with Windows authentication
     conn_str = f"DRIVER={{SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;"
