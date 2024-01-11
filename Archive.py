@@ -60,9 +60,11 @@ def main():
     source_table = 'Original'
     archive_table = 'bkpOriginal'
 
-    # Define the condition to identify data to be archived (last year's data)
-    last_year = (datetime.now() - timedelta(days=365)).year
-    archive_condition = f"YEAR(date_time) = {last_year}"  # Assuming 'date_time' is the actual date column in your table
+    # Prompt the user for the desired year
+    year_to_archive = int(input("Enter the year to archive data (e.g., 2019): "))
+
+    # Define the condition to identify data to be archived based on the user input
+    archive_condition = f"YEAR(date_time) = {year_to_archive}"  # Assuming 'date_time' is the actual date column in your table
 
     # Create a connection string with Windows authentication
     conn_str = f"DRIVER={{SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;"
